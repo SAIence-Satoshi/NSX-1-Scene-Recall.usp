@@ -1,0 +1,62 @@
+/*******************************************************************************************
+  SIMPL+ Module Information
+*******************************************************************************************/
+/*
+Dealer Name:   SAIence
+System Name:   NSX-1
+Programmer:
+Comments:      Builds the NSX-1 scene recall command g(3-digit group)sccc(4-digit scene number) and sends it to TX$
+               Scene[1] = scene 0, Scene[2] = scene 1 ... Scene[8] = scene 7
+               Connect TX$ to the TX$ of the COM port (RS485, 9600 bps, 8N1)
+*/
+
+/*******************************************************************************************
+  Compiler Directives
+*******************************************************************************************/
+#SYMBOL_NAME "NSX-1 Scene Recall"
+#HELP_PDF_FILE "NSX-1 Scene Recall.pdf"
+#DEFINE_CONSTANT MAX_SCENE 8
+
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+#ENABLE_TRACE
+
+/*******************************************************************************************
+  DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS
+*******************************************************************************************/
+DIGITAL_INPUT  _SKIP_;              // row 1 is used by the Group_Number parameter field
+DIGITAL_INPUT  Scene[MAX_SCENE];
+STRING_OUTPUT  TX$;
+
+/*******************************************************************************************
+  Parameters
+*******************************************************************************************/
+INTEGER_PARAMETER Group_Number;
+
+#BEGIN_PARAMETER_PROPERTIES Group_Number
+    propValidUnits = unitDecimal;
+    propBounds = 1d , 999d;
+    // no propDefaultValue: until a value is entered, SIMPL Windows shows the name Group_Number in this field
+    propShortDescription = "NSX-1 group number (1-999)";
+#END_PARAMETER_PROPERTIES
+
+/*******************************************************************************************
+  Event Handlers
+*******************************************************************************************/
+PUSH Scene
+{
+    INTEGER nScene;
+    STRING sCmd[20];
+    nScene = GetLastModifiedArrayIndex() - 1;   // Scene[1] = scene 0
+    MakeString(sCmd, "g%03dsccc%04d", Group_Number, nScene);
+    Trace("%s: %s", GetSymbolReferenceName(), sCmd);   // Reference Name: sent command
+    TX$ = sCmd;
+}
+
+/*******************************************************************************************
+  Main()
+*******************************************************************************************/
+Function Main()
+{
+    WaitForInitializationComplete();
+}
