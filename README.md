@@ -9,7 +9,7 @@ that is wired to the NSX-1 line.
 | Item | Value |
 |---|---|
 | Inputs | `Scene[1]` to `Scene[8]` (digital). `Scene[1]` = scene 0 ... `Scene[8]` = scene 7 |
-| Output | `TX$` (serial) |
+| Outputs | `TX$` (serial): the command. `Log$` (serial, optional): `<Reference Name>: <command>` for SIMPL Debugger |
 | Parameter | `Group_Number` (1 to 999, no default value) |
 | Command | `g%03dsccc%04d`, for example `g010sccc0001` (group 010, scene 1). No CR/LF |
 | COM port | RS485, 9600 bps, 8 data bits, no parity, 1 stop bit |
@@ -29,8 +29,8 @@ that is wired to the NSX-1 line.
 3. In SIMPL Windows, place one symbol per group, enter `Group_Number`, connect the buttons to `Scene[n]`
    and `TX$` to the COM port.
 
-Each command is also written to the trace as `<Reference Name>: <command>`, for example
-`Living: g010sccc0001`. Reference Name may be left blank.
+Each command is also output to `Log$` as `<Reference Name>: <command>`, for example `Living: g010sccc0001`.
+Give `Log$` a signal name to watch it in SIMPL Debugger. Reference Name and `Log$` may be left empty.
 
 The help PDF opens from the symbol in SIMPL Windows (`#HELP_PDF_FILE`).
 
@@ -38,6 +38,8 @@ The help PDF opens from the symbol in SIMPL Windows (`#HELP_PDF_FILE`).
 
 - Keep CRLF line endings in the `.usp` file. A file with LF only fails to compile.
 - The lighting modules do not reply to a scene command.
+- Messages from the SIMPL+ `Trace` function did not appear in SIMPL Debugger or the Text Console in a test on site,
+  so the module uses the `Log$` output instead.
 
 ## License
 

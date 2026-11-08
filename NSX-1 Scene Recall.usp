@@ -27,6 +27,7 @@ Comments:      Builds the NSX-1 scene recall command g(3-digit group)sccc(4-digi
 DIGITAL_INPUT  _SKIP_;              // row 1 is used by the Group_Number parameter field
 DIGITAL_INPUT  Scene[MAX_SCENE];
 STRING_OUTPUT  TX$;
+STRING_OUTPUT  Log$;                // "<Reference Name>: <command>" for SIMPL Debugger (optional)
 
 /*******************************************************************************************
   Parameters
@@ -49,8 +50,8 @@ PUSH Scene
     STRING sCmd[20];
     nScene = GetLastModifiedArrayIndex() - 1;   // Scene[1] = scene 0
     MakeString(sCmd, "g%03dsccc%04d", Group_Number, nScene);
-    Trace("%s: %s", GetSymbolReferenceName(), sCmd);   // Reference Name: sent command
     TX$ = sCmd;
+    MakeString(Log$, "%s: %s", GetSymbolReferenceName(), sCmd);   // Reference Name: sent command
 }
 
 /*******************************************************************************************
