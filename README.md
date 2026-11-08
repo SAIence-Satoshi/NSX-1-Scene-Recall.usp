@@ -39,4 +39,8 @@ The help PDF opens from the symbol in SIMPL Windows (`#HELP_PDF_FILE`).
 - Keep CRLF line endings in the `.usp` file. A file with LF only fails to compile.
 - The lighting modules do not reply to a scene command.
 
+## License
+
+MIT License. Free to use, modify and redistribute, including for commercial use. See [LICENSE](LICENSE).
+
 SAIence — https://saience.jp/
