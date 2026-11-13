@@ -1,10 +1,10 @@
-# NSX-1 Scene Recall
+# XNet_D1 Scene Recall
 
-SIMPL+ module for Crestron control processors that recalls a scene of an NSX-1 lighting group over RS485.
+SIMPL+ module for Crestron control processors that recalls a scene of an XNet/D1 lighting group over RS485.
 
 When one of the digital inputs `Scene[1]` to `Scene[8]` is pressed, the module builds the 12-character command
 `g<group 3 digits>sccc<scene 4 digits>` and sends it to `TX$`. Connect `TX$` to the `TX$` of the COM port
-that is wired to the NSX-1 line.
+that is wired to the XNet/D1 line.
 
 | Item | Value |
 |---|---|
@@ -19,8 +19,8 @@ that is wired to the NSX-1 line.
 
 | File | Content |
 |---|---|
-| `NSX-1 Scene Recall.usp` | SIMPL+ source (CRLF line endings) |
-| `NSX-1 Scene Recall.pdf` | Help: symbol, command format, use in SIMPL Windows, Reference Name, notes |
+| `XNet_D1 Scene Recall.usp` | SIMPL+ source (CRLF line endings) |
+| `XNet_D1 Scene Recall.pdf` | Help: symbol, command format, use in SIMPL Windows, Reference Name, notes |
 
 ## Use
 

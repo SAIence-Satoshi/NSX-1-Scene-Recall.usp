@@ -3,9 +3,9 @@
 *******************************************************************************************/
 /*
 Dealer Name:   SAIence
-System Name:   NSX-1
+System Name:   XNet/D1
 Programmer:
-Comments:      Builds the NSX-1 scene recall command g(3-digit group)sccc(4-digit scene number) and sends it to TX$
+Comments:      Builds the XNet/D1 scene recall command g(3-digit group)sccc(4-digit scene number) and sends it to TX$
                Scene[1] = scene 0, Scene[2] = scene 1 ... Scene[8] = scene 7
                Connect TX$ to the TX$ of the COM port (RS485, 9600 bps, 8N1)
 */
@@ -13,8 +13,8 @@ Comments:      Builds the NSX-1 scene recall command g(3-digit group)sccc(4-digi
 /*******************************************************************************************
   Compiler Directives
 *******************************************************************************************/
-#SYMBOL_NAME "NSX-1 Scene Recall"
-#HELP_PDF_FILE "NSX-1 Scene Recall.pdf"
+#SYMBOL_NAME "XNet_D1 Scene Recall"
+#HELP_PDF_FILE "XNet_D1 Scene Recall.pdf"
 #DEFINE_CONSTANT MAX_SCENE 8
 
 #DEFAULT_VOLATILE
@@ -38,7 +38,7 @@ INTEGER_PARAMETER Group_Number;
     propValidUnits = unitDecimal;
     propBounds = 1d , 999d;
     // no propDefaultValue: until a value is entered, SIMPL Windows shows the name Group_Number in this field
-    propShortDescription = "NSX-1 group number (1-999)";
+    propShortDescription = "XNet/D1 group number (1-999)";
 #END_PARAMETER_PROPERTIES
 
 /*******************************************************************************************
